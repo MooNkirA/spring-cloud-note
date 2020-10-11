@@ -16,7 +16,12 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 public class ImportSelectorTest {
 
     public static void main(String[] args) {
-        // 创建注解扫描容器
+        /*
+         * 创建注解扫描容器，执行流程如下：
+         *  创建注解扫描容器 --> 扫描到@EnableUserBean注解 --> 通过注解上@Import注解找到ImportSelector实现类UserImportSelector
+         *  --> 调用ImportSelector接口实现的selectImports方法，返回需要注册到容器的类全限定名称数组 --> 注册UserConfiguration类实例到容器
+         *  --> 通过@Bean注解将User类实例注册到容器
+         */
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ImportSelectorTest.class);
         // 从容器获取User实例
         User user = context.getBean(User.class);
