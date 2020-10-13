@@ -4,7 +4,6 @@ import com.moon.entity.Product;
 import com.moon.product.dao.ProductDao;
 import com.moon.product.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,7 +21,6 @@ public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private ProductDao productDao;
-
 
     @Override
     public Product findById(Long id) {

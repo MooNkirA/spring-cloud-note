@@ -16,12 +16,23 @@ spring:
 eureka:
   instance:
     prefer-ip-address: true # 将当前服务的ip地址注册到Eureka服务中
-    instance-id: ${spring.cloud.client.ip-address}:${server.port}  # 指定实例id，通过 spring.cloud.client.ip-address 可以获取ip地址
-    lease-renewal-interval-in-seconds: 5 # 发送心跳续约间隔时间
-    lease-expiration-duration-in-seconds: 10 # eureka client发送心跳给server端后，续约到期时间（默认90秒）
+    instance-id: ${spring.application.name}:${server.port}  # 指定实例id
   client:
     register-with-eureka: true  # 服务注册开关
     fetch-registry: true  # 服务发现开关
     # Eureka server 地址，多个eureka server之间用,隔开
     service-url:
-      defaultZone: http://eureka01:8001/eureka/,http://eureka02:8002/eureka/
+      defaultZone: http://localhost:8001/eureka/
+# 配置日志级别，用于观察请求重试时输出的日志
+logging:
+  level:
+    root: debug
+# Ribbon配置
+shop-service-product:
+  ribbon:
+#    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule # 修改策略为随机
+    ConnectTimeout: 250 # Ribbon的连接超时时间
+    ReadTimeout: 1000 # Ribbon的数据读取超时时间
+    OkToRetryOnAllOperations: true # 是否对所有操作都进行重试
+    MaxAutoRetriesNextServer: 1 # 切换实例的重试次数
+    MaxAutoRetries: 1 # 对当前实例的重试次数
