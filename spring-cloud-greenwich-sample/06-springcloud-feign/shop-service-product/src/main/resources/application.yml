@@ -1,5 +1,5 @@
 server:
-  port: 9001 # 项目端口
+  port: ${PORT:9001} # 项目端口
 spring:
   application:
     name: shop-service-product # 服务名称
