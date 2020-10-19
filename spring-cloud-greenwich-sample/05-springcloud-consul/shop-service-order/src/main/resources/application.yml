@@ -1,0 +1,28 @@
+server:
+  port: 9002 # 项目端口
+spring:
+  application:
+    name: shop-service-order # 服务名称
+  datasource: # 数据库配置
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/springcloud_sample_db?useUnicode=true&characterEncoding=utf8
+    username: root
+    password: 123456
+  jpa: # jpa配置
+    database: MySQL
+    show-sql: true
+    open-in-view: true
+  # Consul的服务注册配置
+  cloud:
+    consul:
+      host: 127.0.0.1 # consul服务器的主机ip地址
+      port: 8500 # consul服务器的端口
+      discovery:
+        register: true # 是否需要注册，默认值是true
+        instance-id: ${spring.application.name}:${server.port} # 注册的实例ID (唯一标志)
+        service-name: ${spring.application.name} # 服务的名称
+        port: ${server.port} # 服务的请求端口
+        prefer-ip-address: true # 是否开启ip地址注册，默认值是false
+        ip-address: ${spring.cloud.client.ip-address} # 当前服务的请求ip
+        health-check-path: /actuator/health # 健康检查路径，默认值就是/actuator/health
+        health-check-interval: 15s # 健康检查时间间隔，默认值是10s

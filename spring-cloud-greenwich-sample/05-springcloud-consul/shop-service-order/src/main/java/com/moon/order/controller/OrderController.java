@@ -37,8 +37,12 @@ public class OrderController {
      */
     @PostMapping("/{id}")
     public String createOrder(@PathVariable Long id) {
-        // 通过http请求，获取商品数据
-        Product product = restTemplate.getForObject("http://127.0.0.1:9001/product/" + id, Product.class);
+        /*
+         * 通过http请求，获取商品数据
+         * 拼接请求url，将原来使用ip+端口调用的方式，改成要调用的服务对应的名称即可
+         * 服务提供者名称在其项目配置文件的spring.application.name属性中定义
+         */
+        Product product = restTemplate.getForObject("http://shop-service-product/product/" + id, Product.class);
         LOGGER.info("当前下单的商品是: ${}", product);
         return "创建订单成功";
     }
