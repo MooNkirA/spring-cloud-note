@@ -1,0 +1,17 @@
+server:
+  port: 8031
+spring:
+  application:
+    name: shop-server-hystrix-turbine
+# 配置eureka服务，用于获取相关监控的微服务地址列表
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8001/eureka/
+  instance:
+    prefer-ip-address: true
+# hystrix turbine 配置
+turbine:
+  # 配置需要监控的微服务列表，多个服务之前使用,分隔
+  appConfig: shop-service-order
+  clusterNameExpression: "'default'"
