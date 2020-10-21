@@ -1,0 +1,33 @@
+server:
+  port: 9002 # 项目端口
+spring:
+  application:
+    name: shop-service-order # 服务名称
+  datasource: # 数据库配置
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/springcloud_sample_db?useUnicode=true&characterEncoding=utf8
+    username: root
+    password: 123456
+  jpa: # jpa配置
+    database: MySQL
+    show-sql: true
+    open-in-view: true
+# Eureka 客户端配置
+eureka:
+  instance:
+    prefer-ip-address: true # 将当前服务的ip地址注册到Eureka服务中
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}  # 指定实例id
+  client:
+    register-with-eureka: true  # 服务注册开关
+    fetch-registry: true  # 服务发现开关
+    # Eureka server 地址，多个eureka server之间用,隔开
+    service-url:
+      defaultZone: http://localhost:8001/eureka/
+# hystrix 配置
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 3000 # 配置连接超时时长，默认的连接超时时间1秒，即若1秒没有返回数据，自动的触发降级逻辑

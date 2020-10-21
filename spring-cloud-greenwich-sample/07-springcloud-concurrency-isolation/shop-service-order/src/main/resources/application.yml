@@ -1,0 +1,16 @@
+server:
+  port: 9002 # 项目端口
+  tomcat:
+    max-threads: 10 # 修改web容器最大连接数
+spring:
+  application:
+    name: shop-service-order # 服务名称
+  datasource: # 数据库配置
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/springcloud_sample_db?useUnicode=true&characterEncoding=utf8
+    username: root
+    password: 123456
+  jpa: # jpa配置
+    database: MySQL
+    show-sql: true
+    open-in-view: true
