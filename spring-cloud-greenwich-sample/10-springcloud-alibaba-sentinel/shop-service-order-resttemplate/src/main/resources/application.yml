@@ -16,7 +16,15 @@ spring:
     # Sentinel 相关配置
     sentinel:
       transport:
-        dashboard: localhost:8080   # 配置sentinel控制台的请求地址
+        dashboard: localhost:8080 # 配置sentinel控制台的请求地址
+      eager: true # 取消Sentinel控制台懒加载，当服务启动时立即加载到控制台中
+      # 配置Sentinel读取本地文件配置限流规则
+      datasource:
+        ds1:
+          file:
+            file: classpath:flowrule.json
+            data-type: json
+            rule-type: flow
 # Eureka 客户端配置
 eureka:
   instance:

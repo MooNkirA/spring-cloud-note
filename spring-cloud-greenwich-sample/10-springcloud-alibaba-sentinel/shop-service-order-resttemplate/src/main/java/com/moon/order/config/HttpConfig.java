@@ -1,5 +1,7 @@
 package com.moon.order.config;
 
+import com.alibaba.cloud.sentinel.annotation.SentinelRestTemplate;
+import com.moon.order.exception.ExceptionUtil;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,6 +25,15 @@ public class HttpConfig {
      */
     @LoadBalanced // 是Ribbon组件提供的负载均衡的注解，声明此注解后就可以基于Ribbon的服务调用与负载均衡
     @Bean("restTemplate")
+    /*
+     * @SentinelRestTemplate注解表示使用Sentinel对象RestTemplate的支持
+     *  blockHandler属性：指定熔断时降级方法
+     *  blockHandlerClass属性：指定熔断降级配置类
+     *  fallback属性：指定异常时降级方法
+     *  fallbackClass属性：指定异常限级配置类
+     */
+    @SentinelRestTemplate(blockHandler = "handleBlock", blockHandlerClass = ExceptionUtil.class,
+            fallback = "handleFallback", fallbackClass = ExceptionUtil.class)
     public RestTemplate createRestTemplate() {
         return new RestTemplate();
     }
