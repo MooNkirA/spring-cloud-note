@@ -24,6 +24,7 @@
         <module>shop-service-product</module>
         <module>shop-service-order</module>
         <module>shop-server-eureka</module>
+        <module>shop-server-zuul</module>
     </modules>
 
     <properties>

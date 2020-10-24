@@ -1,0 +1,34 @@
+server:
+  port: 8080 # 项目端口
+spring:
+  application:
+    name: shop-server-zuul # 服务名称
+# zuul 路由配置
+zuul:
+  routes:
+    # 商品微服务
+    # shop-service-product: # 路由名称，名称任意，保持所有路由名称唯一即可
+    # sensitiveHeaders: # 默认zuul会屏蔽cookie，cookie不会传到下游服务，这里设置为空则取消默认的黑名单，如果设置了具体的头信息则不会传到下游服务
+
+    # ***** zuul路由的配置方式1：配置实际的ip或者域名 *****
+    # path: /product-service/** # 配置映射路径，当前示例即：localhost:8080/product-service/xxxx/xx
+    # url: http://127.0.0.1:9001 # 配置请求映射路径时转发到对应的实际微服务url地址，可以是实际ip或者域名
+
+    # ***** zuul路由的配置方式2：配置相应请求转发的服务名称 *****
+    # path: /product-service/** # 配置映射路径，当前示例即：localhost:8080/product-service/xxxx/xx
+    # serviceId: shop-service-product # 配置请求转发相应的服务名称，网关会从eureka中获取该服务名称下的服务实例的地址
+
+    # ***** zuul路由的配置方式3：当路由的名称和服务名称一样的时候，zuul路由配置可简化成 zuul.routes.<serviceId>=<path> *****
+    shop-service-product: /product-service/**
+    # ***** zuul路由的配置方式4：默认路由配置，即一切服务的映射路径就是服务的名称 *****
+    # 相当于默认就配置了 shop-service-order: /shop-service-order/**
+
+# Eureka 客户端配置
+eureka:
+  instance:
+    prefer-ip-address: true # 将当前服务的ip地址注册到Eureka服务中
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}  # 指定实例id
+  client:
+    service-url:
+      defaultZone: http://localhost:8001/eureka/ # Eureka server 地址，多个eureka server之间用,隔开
+      registry-fetch-interval-seconds: 5 # 配置获取服务列表的周期为5s，默认值是30s
