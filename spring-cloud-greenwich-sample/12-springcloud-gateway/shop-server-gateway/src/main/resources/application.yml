@@ -1,0 +1,16 @@
+server:
+  port: 8080 # 项目端口
+spring:
+  application:
+    name: shop-server-gateway # 服务名称
+  cloud:
+    # Spring Cloud Gateway 配置
+    gateway:
+      # 配置路由（包含的元素：路由id、路由到微服务的uri，断言【判断条件】）
+      routes:
+        # 路由配置都是多个，所以此处是一个数组
+        - id: shop-service-product # 路由id
+          uri: http://127.0.0.1:9001 # 路由到微服务的uri
+          predicates:
+            # 注意此path属性与zuul的path属性不一样，zuul只会将/**部分拼接到uri后面，而gateway会将全部拼接到uri后面
+            - Path=/product/** # 断言，此处访问 http://127.0.0.1:8080/product/1 就会路由到 http://127.0.0.1:9001/product/1
