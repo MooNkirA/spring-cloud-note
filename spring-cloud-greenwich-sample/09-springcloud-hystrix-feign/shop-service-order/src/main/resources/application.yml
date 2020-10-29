@@ -32,3 +32,9 @@ logging:
   level:
     # 配置只输出ProductFeignClient接口的日志
     com.moon.order.feign.ProductFeignClient: debug
+# 配置暴露所有Actuator监控端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
