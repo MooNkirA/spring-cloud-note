@@ -7,10 +7,29 @@ spring:
     # Spring Cloud Gateway 配置
     gateway:
       # 配置路由（包含的元素：路由id、路由到微服务的uri，断言【判断条件】）
-      routes:
-        # 路由配置都是多个，所以此处是一个数组
-        - id: shop-service-product # 路由id
-          uri: http://127.0.0.1:9001 # 路由到微服务的uri
-          predicates:
-            # 注意此path属性与zuul的path属性不一样，zuul只会将/**部分拼接到uri后面，而gateway会将全部拼接到uri后面
-            - Path=/product/** # 断言，此处访问 http://127.0.0.1:8080/product/1 就会路由到 http://127.0.0.1:9001/product/1
+#      routes:
+#        # 路由配置都是多个，所以此处是一个数组
+#        - id: shop-service-product # 路由id
+#          # uri: http://127.0.0.1:9001 # 方式一：直接配置路由到微服务的uri
+#          uri: lb://shop-service-product # 方式二：根据微服务名称从注册中心拉取服务的地址与端口，格式： lb://服务名称（服务在注册中心上注册的名称）
+#          predicates:
+#            # 注意此path属性与zuul的path属性不一样，zuul只会将/**部分拼接到uri后面，而gateway会将全部拼接到uri后面
+#            # - Path=/product/** # 断言，此处访问 http://127.0.0.1:8080/product/1 就会路由到 http://127.0.0.1:9001/product/1(在未配置RewritePath属性前)
+#            - Path=/shop-service-product/**
+#          filters: # 配置路由过滤器
+#            # 配置路径重写的过滤器，通过正则表达式将 http://127.0.0.1:8080/shop-service-product/product/2 重写为 http://127.0.0.1:9001/product/2（注：在yml格式中，$ 需要写写成 $\）
+#            - RewritePath=/shop-service-product/(?<segment>.*), /$\{segment}
+      # 配置自动根据注册中心的微服务名称进行路由转发
+      discovery:
+        locator:
+          enabled: true # 开启根据服务名称自动转发，默认值是false
+          lower-case-service-id: true # 配置微服务名称以小写的形式匹配，默认值是false，全大写
+
+# Eureka 配置
+eureka:
+  instance:
+    prefer-ip-address: true # 将当前服务的ip地址注册到Eureka服务中
+    instance-id: ${spring.application.name}:${server.port}  # 指定实例id
+  client:
+    service-url:
+      defaultZone: http://localhost:8001/eureka/ # Eureka server 地址，多个eureka server之间用,隔开

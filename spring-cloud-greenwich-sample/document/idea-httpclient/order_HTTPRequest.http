@@ -1,5 +1,0 @@
-### 根据商品id，创建订单
-POST http://127.0.0.1:9002/order/1
-Content-Type: application/json
-
-###
