@@ -1,0 +1,22 @@
+server:
+  port: 8080 # 项目端口
+spring:
+  application:
+    name: shop-server-gateway # 服务名称
+  cloud:
+    # Spring Cloud Gateway 配置
+    gateway:
+      # 配置自动根据注册中心的微服务名称进行路由转发
+      discovery:
+        locator:
+          enabled: true # 开启根据服务名称自动转发，默认值是false
+          lower-case-service-id: true # 配置微服务名称以小写的形式匹配，默认值是false，全大写
+
+# Eureka 配置
+eureka:
+  instance:
+    prefer-ip-address: true # 将当前服务的ip地址注册到Eureka服务中
+    instance-id: ${spring.application.name}:${server.port}  # 指定实例id
+  client:
+    service-url:
+      defaultZone: http://localhost:8001/eureka/ # Eureka server 地址，多个eureka server之间用,隔开

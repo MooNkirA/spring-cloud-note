@@ -1,0 +1,30 @@
+### ******************* 商品服务 *******************
+### 新增商品
+POST http://localhost:9001/product
+Content-Type: application/json
+
+{
+  "productName": "石原里美手办",
+  "status": 1,
+  "price": 2220,
+  "productDesc": "呵呵！"
+}
+
+### 查询所有商品
+GET http://localhost:9001/product
+Accept: application/json
+
+### ******************* 订单服务 *******************
+### 根据商品id，创建订单
+POST http://127.0.0.1:9002/order/1
+Content-Type: application/json
+
+### ******************* 网关服务 *******************
+### 查询商品
+GET http://127.0.0.1:8080/shop-service-product/product/1
+# 设置header的属性
+access-token: I am a token!
+
+###
+
+

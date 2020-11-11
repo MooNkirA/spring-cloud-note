@@ -20,7 +20,6 @@
 
     <!-- 子模块 -->
     <modules>
-        <module>shop-service-common</module>
         <module>shop-service-product</module>
         <module>shop-service-order</module>
     </modules>

@@ -12,17 +12,8 @@ spring:
         - id: shop-service-product # 路由id
           uri: lb://shop-service-product # 方式二：根据微服务名称从注册中心拉取服务的地址与端口，格式： lb://服务名称（服务在注册中心上注册的名称）
           predicates:
-            # 注意此path属性与zuul的path属性不一样，zuul只会将/**部分拼接到uri后面，而gateway会将全部拼接到uri后面
             - Path=/shop-service-product/**
           filters: # 配置路由过滤器
-            - name: RequestRateLimiter # 配置使用限流过滤器，是Spring Cloud Gateway提供的内置过滤器
-              args:
-                # 使用SpEL表达式，从spring容器中获取bean名称为keyResolver的对象，此对象就是KeyResolver接口的实例
-                key-resolver: '#{@keyResolver}'
-                # 令牌桶每秒填充平均速率，示例配置表示：每秒往令牌桶填充1个令牌
-                redis-rate-limiter.replenishRate: 1
-                # 令牌桶的上限（总容量），示例配置表示：令牌桶的总容量为3上令牌
-                redis-rate-limiter.burstCapacity: 3
             # 配置路径重写的过滤器，通过正则表达式将 http://127.0.0.1:8080/shop-service-product/product/2 重写为 http://127.0.0.1:9001/product/2（注：在yml格式中，$ 需要写写成 $\）
             - RewritePath=/shop-service-product/(?<segment>.*), /$\{segment}
 
