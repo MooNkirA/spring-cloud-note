@@ -14,7 +14,6 @@
 
 ```
 spring-cloud-note
- ├── xxx -- xxx
- └── xxx -- xxx
+ └── spring-cloud-greenwich-sample  # Spring Cloud Greenwich版本的示例项目
 ```
 

@@ -5,11 +5,11 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.moon</groupId>
-    <artifactId>10-springcloud-alibaba-sentinel</artifactId>
+    <artifactId>spring-cloud-greenwich-sample</artifactId>
     <version>1.0-SNAPSHOT</version>
     <name>${project.artifactId}</name>
     <packaging>pom</packaging>
-    <description>Spring Cloud Alibaba Sentinel 基础使用示例项目</description>
+    <description>Spring Cloud Greenwich 版本的综合使用示例聚合工程</description>
 
     <!-- 引入 spring boot 父工程 -->
     <parent>
@@ -20,10 +20,8 @@
 
     <!-- 子模块 -->
     <modules>
-        <module>shop-service-product</module>
-        <module>shop-service-order-feign</module>
-        <module>shop-service-order-resttemplate</module>
-        <module>shop-server-eureka</module>
+        <module>reference-technology-demo</module>
+        <module>spring-cloud-sample-common</module>
     </modules>
 
     <properties>
@@ -37,23 +35,6 @@
     <!-- 版本控制 -->
     <dependencyManagement>
         <dependencies>
-            <!-- Spring Cloud Greenwich 版本的依赖 -->
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>Greenwich.RELEASE</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <!-- Spring Cloud Alibaba 相应 Spring Cloud Greenwich 版本的依赖 -->
-            <dependency>
-                <groupId>com.alibaba.cloud</groupId>
-                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
-                <version>2.1.2.RELEASE</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-
             <dependency>
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
@@ -63,13 +44,6 @@
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
-            </dependency>
-
-            <!-- 子模块版本号控制 -->
-            <dependency>
-                <groupId>com.moon</groupId>
-                <artifactId>shop-service-common</artifactId>
-                <version>${project.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
