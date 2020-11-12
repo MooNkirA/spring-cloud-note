@@ -1,5 +1,5 @@
 server:
-  port: 8080 # 项目端口
+  port: ${PORT:8080} # 项目端口
 spring:
   application:
     name: shop-server-gateway # 服务名称
