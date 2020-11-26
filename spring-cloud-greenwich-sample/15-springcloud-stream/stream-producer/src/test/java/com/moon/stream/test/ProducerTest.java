@@ -1,5 +1,6 @@
 package com.moon.stream.test;
 
+import com.moon.stream.message.CustomMessageSender;
 import com.moon.stream.message.MessageSender;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,10 +23,19 @@ public class ProducerTest {
     @Autowired
     private MessageSender messageSender;
 
+    @Autowired
+    private CustomMessageSender customMessageSender;
+
     /* 测试发送消息 */
     @Test
     public void sendMessage() {
         messageSender.send("Hello, Spring Cloud Stream Producer!");
+    }
+
+    /* 测试自定义消息通道发送消息 */
+    @Test
+    public void sendMessageByCustomChannel() {
+        customMessageSender.send("Hello, send message from custom channel!");
     }
 
 }
