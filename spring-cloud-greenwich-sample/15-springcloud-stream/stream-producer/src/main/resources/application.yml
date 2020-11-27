@@ -15,6 +15,9 @@ spring:
           contentType: text/plain # 用于指定消息的类型
         customOutput: # 自定义的发送消息的通道（在CustomProcessor接口中定义的）
           destination: stream-sample-custom
+          producer:
+            partitionKeyExpression: payload # 指定分区键（关键字）的表达式规则。可以使用SpEL表达式配置。注：属性名也可以使用中划线间隔方式，如，partition-key-expression
+            partitionCount: 2 # 指定消息分区的数量
       binders:  # 配置绑定器
         defaultRabbit:
           type: rabbit # 指定绑定消息中间件的类型

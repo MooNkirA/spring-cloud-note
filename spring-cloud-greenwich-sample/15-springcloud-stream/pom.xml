@@ -10,6 +10,7 @@
     <modules>
         <module>stream-producer</module>
         <module>stream-consumer</module>
+        <module>stream-consumer2</module>
         <module>stream-common</module>
     </modules>
     <name>${project.artifactId}</name>

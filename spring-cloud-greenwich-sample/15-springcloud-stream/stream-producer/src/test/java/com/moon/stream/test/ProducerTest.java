@@ -38,4 +38,11 @@ public class ProducerTest {
         customMessageSender.send("Hello, send message from custom channel!");
     }
 
+    /* 测试消息分区支持功能 */
+    @Test
+    public void testMessagePartitioningSupport() {
+        for (int i = 0; i < 5; i++) {
+            customMessageSender.send(0);
+        }
+    }
 }

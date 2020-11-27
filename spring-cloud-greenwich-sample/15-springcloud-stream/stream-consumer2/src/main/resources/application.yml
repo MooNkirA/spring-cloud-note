@@ -1,5 +1,5 @@
 server:
-  port: 7002 # 服务端口
+  port: 7003 # 服务端口
 spring:
   application:
     name: stream-consumer # 指定服务名
@@ -9,16 +9,16 @@ spring:
     password: guest
   cloud:
     stream: # Spring Cloud Stream 配置
-      instanceCount: 2  # 指定消费者实例总数 注：属性名也可以使用中划线间隔方式，如，instance-count
-      instanceIndex: 0  # 当前消费者实例的索引，从0开始，最大值为 “instanceCount参数值-1”
+      instanceCount: 2
+      instanceIndex: 1
       bindings:
         input: # Spring Cloud Stream内置的获取消息的通道（名称为input）
           destination: stream-sample-default # 指定消息获取的目的地，在RabbitMQ中，从一个stream-sample-default的exchange中获取消息
         customInput: # 自定义的获取消息的通道（在CustomProcessor接口中定义的）
           destination: stream-sample-custom
-          group: group-1 # 设置此消息目的地所属分组的名称，同名分组中的多个消息者，只有一个实例去获取消息并消费
+          group: group-1
           consumer:
-            partitioned: true  # 开启消费者分区支持
+            partitioned: true
       binders:  # 配置绑定器
         defaultRabbit:
           type: rabbit # 指定绑定消息中间件的类型
