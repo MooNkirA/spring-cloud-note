@@ -8,11 +8,11 @@ spring:
       discovery: # 配置通过注册中心获取 server-config 配置中心服务
         enabled: true # 配置是否开启服务发现，默认值是true
         service-id: server-config # 配置中心服务的id
-management: # 配置开启动态刷新的请求路径端点
-  endpoints:
-    web:
-      exposure:
-        include: refresh # 配置开放的请求刷新的url路径
+#management: # 配置开启动态刷新的请求路径端点
+#  endpoints:
+#    web:
+#      exposure:
+#        include: refresh # 配置开放的请求刷新的url路径
 eureka: # Eureka 客户端配置
   instance:
     prefer-ip-address: true
