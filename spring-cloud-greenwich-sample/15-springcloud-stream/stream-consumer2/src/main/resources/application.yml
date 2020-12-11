@@ -1,0 +1,24 @@
+server:
+  port: 7003 # 服务端口
+spring:
+  application:
+    name: stream-consumer # 指定服务名
+  rabbitmq:
+    addresses: 192.168.12.132
+    username: guest
+    password: guest
+  cloud:
+    stream: # Spring Cloud Stream 配置
+      instanceCount: 2
+      instanceIndex: 1
+      bindings:
+        input: # Spring Cloud Stream内置的获取消息的通道（名称为input）
+          destination: stream-sample-default # 指定消息获取的目的地，在RabbitMQ中，从一个stream-sample-default的exchange中获取消息
+        customInput: # 自定义的获取消息的通道（在CustomProcessor接口中定义的）
+          destination: stream-sample-custom
+          group: group-1
+          consumer:
+            partitioned: true
+      binders:  # 配置绑定器
+        defaultRabbit:
+          type: rabbit # 指定绑定消息中间件的类型

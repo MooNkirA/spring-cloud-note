@@ -22,8 +22,8 @@ spring-cloud-greenwich-sample
  ├── 12-springcloud-gateway  # Spring Cloud Gateway 服务网关基础使用示例项目
  ├── 13-springcloud-gateway-sentinel  # Spring Cloud Gateway 服务网关基于Sentinel的实现限流功能的示例项目
  └── spring-cloud-sample-common # Spring Cloud 示例项目各个模块公共聚合模块
-  		└── shop-service-common   # 公共模块，用于存放公共的实体类和工具类
+      └── shop-service-common   # 公共模块，用于存放公共的实体类和工具类
  └── reference-technology-demo  # Spring Cloud 涉及的基础技术示例
- 			└── import-importselector-demo # 使用@Import注解的引入ImportSelector接口的实现类的基础使用示例
+      └── import-importselector-demo # 使用@Import注解的引入ImportSelector接口的实现类的基础使用示例
 ```
 
