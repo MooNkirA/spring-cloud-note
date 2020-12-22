@@ -1,0 +1,27 @@
+server:
+  port: ${PROT:10000} # 服务端口
+spring:
+  application:
+    name: server-config # 指定服务名
+  cloud:
+    config: # config 相关配置
+      server:
+        git:
+          uri: https://gitee.com/xxxx/springcloud-config-sample-repo.git # 指定配置文件所在服务的地址（可以是本地存储）
+  rabbitmq: # RabbitMQ相关配置
+    host: 192.168.12.132
+    port: 5672
+    username: guest
+    password: guest
+management: # 配置开启动态刷新的请求路径端点
+  endpoints:
+    web:
+      exposure:
+        include: bus-refresh # 配置开放的请求刷新的url路径
+eureka: # Eureka 客户端配置
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+  client:
+    service-url:
+      defaultZone: http://localhost:8001/eureka/

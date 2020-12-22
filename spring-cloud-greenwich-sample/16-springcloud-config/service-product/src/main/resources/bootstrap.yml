@@ -1,0 +1,22 @@
+spring:
+  cloud:
+    config:
+      name: product # 应用名称，需要对应git中配置文件名称的前半部分，如此示例读取 product-*.yml
+      profile: pro # 相应环境的配置名称（后缀）。如此示例读取 product-dev.yml
+      label: master # 配置中心git服务的分支名称
+      # uri: http://127.0.0.1:10000/ # server-config服务的请求地址
+      discovery: # 配置通过注册中心获取 server-config 配置中心服务
+        enabled: true # 配置是否开启服务发现，默认值是true
+        service-id: server-config # 配置中心服务的id
+#management: # 配置开启动态刷新的请求路径端点
+#  endpoints:
+#    web:
+#      exposure:
+#        include: refresh # 配置开放的请求刷新的url路径
+eureka: # Eureka 客户端配置
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+  client:
+    service-url:
+      defaultZone: http://localhost:8001/eureka/
