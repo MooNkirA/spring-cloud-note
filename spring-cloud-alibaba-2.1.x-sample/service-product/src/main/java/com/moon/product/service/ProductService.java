@@ -1,5 +1,7 @@
 package com.moon.product.service;
 
+import com.moon.domain.Product;
+
 /**
  * 商品业务接口
  *
@@ -9,4 +11,7 @@ package com.moon.product.service;
  * @description
  */
 public interface ProductService {
+
+    Product findById(Long pid);
+
 }

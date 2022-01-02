@@ -2,6 +2,7 @@ package com.moon.product;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 /**
  * 项目启动类
@@ -12,6 +13,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @description
  */
 @SpringBootApplication
+// Spring Cloud 原生注解 @EnableDiscoveryClient 开启服务注册发现功能
+@EnableDiscoveryClient
 public class ProductApplication {
 
     public static void main(String[] args) {

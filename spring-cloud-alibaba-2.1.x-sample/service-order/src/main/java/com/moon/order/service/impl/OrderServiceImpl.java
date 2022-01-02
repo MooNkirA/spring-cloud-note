@@ -1,6 +1,10 @@
 package com.moon.order.service.impl;
 
+import com.moon.domain.Order;
+import com.moon.order.dao.OrderDao;
 import com.moon.order.service.OrderService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * 订单业务实现
@@ -10,5 +14,15 @@ import com.moon.order.service.OrderService;
  * @date 2021-12-31 19:14
  * @description
  */
+@Service
 public class OrderServiceImpl implements OrderService {
+
+    @Autowired
+    private OrderDao orderDao;
+
+    @Override
+    public void createOrder(Order order) {
+        orderDao.save(order);
+    }
+
 }

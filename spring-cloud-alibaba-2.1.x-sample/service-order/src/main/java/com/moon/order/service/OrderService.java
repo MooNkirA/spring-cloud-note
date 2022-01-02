@@ -1,5 +1,7 @@
 package com.moon.order.service;
 
+import com.moon.domain.Order;
+
 /**
  * 订单业务接口
  *
@@ -9,4 +11,7 @@ package com.moon.order.service;
  * @description
  */
 public interface OrderService {
+
+    void createOrder(Order order);
+
 }
