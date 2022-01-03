@@ -39,38 +39,6 @@ public class OrderController {
     private DiscoveryClient discoveryClient;
 
     /**
-     * 下单请求方法，通过 ribbon 进行负载均衡
-     *
-     * @param pid
-     * @return
-     */
-    @GetMapping("/ribbon/{pid}")
-    public Order ribbonLoadBalanced(@PathVariable("pid") Long pid) {
-        log.info("接收到ID为{}的商品下单请求", pid);
-
-        /* RestTemplate 接入 Ribbon 后，将原来的url+端口替换成注册中心上的服务名称 */
-        Product product = restTemplate
-                .getForObject(String.format("http://service-product/product/%s", pid), Product.class);
-
-        Order order = new Order();
-        if (product != null) {
-            order.setProductId(pid);
-            order.setNumber(1);
-            order.setPrice(product.getPrice());
-            order.setAmount(product.getPrice());
-            order.setProductName(product.getProductName());
-            // 暂写死用户
-            order.setUserId(Long.parseLong("0"));
-            order.setUsername("测试用户");
-
-            // 创建订单
-            orderService.createOrder(order);
-        }
-
-        return order;
-    }
-
-    /**
      * 下单请求方法，通过 nacos 服务注册中心获取商品服务地址和端口，
      * 自定义实现负载均衡（随机）
      *

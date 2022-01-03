@@ -19,6 +19,18 @@ spring:
     nacos:
       discovery:
         server-addr: 127.0.0.1:8848 # 配置 Nacos server 的地址
+    # Sentinel 相关配置
+    sentinel:
+      transport:
+        port: 9999 # 跟控制台交流的端口，随意指定一个未使用的端口即可
+        dashboard: localhost:8080 # 配置sentinel控制台的请求地址
+      eager: true # 取消Sentinel控制台懒加载，当服务启动时立即加载到控制台中
+      # 配置关闭 sentinel 的 CommonFilter 实例化。用于测试实现链路限流  Spring Cloud Alibaba 2.1.1 版本是此配置
+      # filter:
+      #  enabled: false
+      # 关闭context整合 Spring Cloud Alibaba 2.1.2 及以上版本是此配置
+      web-context-unify: false
+
 # 配置 Ribbon 的负载均衡策略
 service-product: # 调用的提供者的名称
   ribbon:
