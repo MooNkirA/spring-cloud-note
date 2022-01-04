@@ -1,5 +1,6 @@
 package com.moon.order.controller;
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.moon.order.service.SentinelDemoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -58,6 +59,37 @@ public class SentinelDemoController {
             throw new RuntimeException();
         }
         return "message5";
+    }
+
+    /* 测试热点规则限流 */
+    @SentinelResource("paramFlowRuleDemo") // 注意：必须在资源上使用 @SentinelResource 注解，否则热点规则不生效
+    @RequestMapping("paramFlowRuleDemo")
+    public String getMessage6(String name, Integer age) {
+        return String.format("name: %s, age: %d", name, age);
+    }
+
+    /* 测试 @SentinelResource 注解的 blockHandler 属性*/
+    @RequestMapping("sentinelResourceBlockHandler")
+    public String sentinelResourceBlockHandler(String text) {
+        return sentinelDemoService.sentinelResourceBlockHandler(text);
+    }
+
+    /* 测试 @SentinelResource 注解的 fallback 属性*/
+    @RequestMapping("sentinelResourceFallback")
+    public String sentinelResourceFallback(String text) {
+        return sentinelDemoService.sentinelResourceFallback(text);
+    }
+
+    /* 测试 @SentinelResource 注解的 blockHandlerClass 与 blockHandler 属性*/
+    @RequestMapping("sentinelResourceBlockHandlerOut")
+    public String sentinelResourceBlockHandlerOut(String text) {
+        return sentinelDemoService.sentinelResourceBlockHandlerOut(text);
+    }
+
+    /* 测试 @SentinelResource 注解的 fallbackClass 与 fallback 属性*/
+    @RequestMapping("sentinelResourceFallbackOut")
+    public String sentinelResourceFallbackOut(String text) {
+        return sentinelDemoService.sentinelResourceFallbackOut(text);
     }
 
 }

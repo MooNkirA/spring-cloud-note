@@ -12,4 +12,12 @@ public interface SentinelDemoService {
 
     void message();
 
+    String sentinelResourceBlockHandler(String text);
+
+    String sentinelResourceFallback(String text);
+
+    String sentinelResourceBlockHandlerOut(String text);
+
+    String sentinelResourceFallbackOut(String text);
+
 }

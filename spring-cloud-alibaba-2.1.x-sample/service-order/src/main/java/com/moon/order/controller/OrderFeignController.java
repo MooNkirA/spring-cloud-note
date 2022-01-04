@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 
 /**
  * 订单控制类
@@ -46,6 +45,14 @@ public class OrderFeignController {
 
         Order order = new Order();
         if (product != null) {
+
+            // 增加 feign 调用容错返回的判断
+            if (product.getId().compareTo(Long.parseLong("-1")) == 0) {
+                order.setProductId(product.getId());
+                order.setProductName(product.getProductName());
+                return order;
+            }
+
             order.setProductId(pid);
             order.setNumber(1);
             order.setPrice(product.getPrice());

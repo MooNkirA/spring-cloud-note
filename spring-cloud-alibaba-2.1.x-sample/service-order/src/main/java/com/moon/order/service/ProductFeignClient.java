@@ -1,6 +1,8 @@
 package com.moon.order.service;
 
 import com.moon.domain.Product;
+import com.moon.order.service.impl.ProductFeignClientFallBack;
+import com.moon.order.service.impl.ProductFeignClientFallBackFactory;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,8 +18,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 /*
  * @FeignClient 注解，用于标识当前接口为Feign调用微服务的核心接口
  *  value/name属性：指定需要调用的服务提供者注册的名称
+ *  fallback属性：指定当调用出现问题之后，要执行哪个容错类中的同名方法的备用逻辑
  */
-@FeignClient("service-product") // 或者：@FeignClient(name = "待调用的服务注册名称")
+// @FeignClient(value = "service-product", fallback = ProductFeignClientFallBack.class)
+@FeignClient(value = "service-product", fallbackFactory = ProductFeignClientFallBackFactory.class) // 注意：fallback 和 fallbackFactory 只能使用其中一种方式
 public interface ProductFeignClient {
 
     /*
