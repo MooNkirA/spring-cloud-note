@@ -1,0 +1,20 @@
+server:
+  port: 7000 # 项目端口
+spring:
+  application:
+    name: api-gateway # 服务名称
+  cloud:
+    # Spring Cloud Gateway 配置
+    gateway:
+      # 配置路由数组（包含的元素：路由id、路由到微服务的uri，断言【判断条件】）
+      routes:
+        # 路由配置都是多个，所以此处是一个数组
+        - id: service-product # 路由id
+          uri: http://127.0.0.1:8081 # 方式一：直接配置路由到微服务的uri
+          order: 1 # 路由的优先级,数字越小级别越高
+          predicates: # 断言(就是路由转发要满足的条件)
+            # 注意此path属性与zuul的path属性不一样，zuul只会将/**部分拼接到uri后面，而gateway会将全部拼接到uri后面
+            # 断言，此处访问 http://127.0.0.1:7000/api-product/product/1 就会路由到 http://127.0.0.1:8081/api-product/product/1(在未配置RewritePath属性前、StripPrefix 过滤器之前)
+            - Path=/api-product/**
+          filters: # 过滤器，请求在传递过程中可以通过过滤器对其进行一定的修改
+            - StripPrefix=1 # 此过滤器配置的作用是，在请求转发之前去掉第1层路径，即以上请求转化路径会变成 http://127.0.0.1:8081/product/1

@@ -18,6 +18,7 @@
         <module>service-user</module>
         <module>service-product</module>
         <module>service-order</module>
+        <module>api-gateway</module>
     </modules>
 
     <!-- Spring Boot 父项目依赖 -->
