@@ -35,4 +35,25 @@ public class ProductController {
         return product;
     }
 
+    /* 用于测试 spring cloud gateway 自定义 API 限流分组 */
+    @RequestMapping("group1/flowlimit1")
+    public String flowLimit1() {
+        return "demo";
+    }
+
+    @RequestMapping("group1/flowlimit2")
+    public String flowLimit2() {
+        return "demo";
+    }
+
+    @RequestMapping("group2/flowlimit1")
+    public String flowLimit3() {
+        return "demo";
+    }
+
+    @RequestMapping("group2/flowlimit2")
+    public String flowLimit4() {
+        return "demo";
+    }
+
 }
