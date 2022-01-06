@@ -29,3 +29,12 @@ spring:
     nacos:
       discovery:
         server-addr: 127.0.0.1:8848 # 配置 Nacos server 的地址，将网关服务注册到 nacos 中
+  # 配置 zipkin
+  zipkin:
+    base-url: http://127.0.0.1:9411/ # 设置 zipkin server的请求地址
+    discoveryClientEnabled: false # 让nacos把它当成一个URL，而不要当做服务名
+    sender:
+      type: web # 设置数据的传输方式 , 以 http 的形式向 server 端发送数据
+  sleuth:
+    sampler:
+      probability: 1 # 配置采样的百分比，默认是 0.1（即10%）
