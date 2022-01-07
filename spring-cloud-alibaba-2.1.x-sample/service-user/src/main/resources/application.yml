@@ -24,3 +24,10 @@ spring:
   sleuth:
     sampler:
       probability: 1 # 配置采样的百分比，默认是 0.1（即10%）
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848 # 配置 Nacos server 的地址
+# RocketMQ 配置
+rocketmq:
+  name-server: 127.0.0.1:9876 # RocketMQ 服务的地址

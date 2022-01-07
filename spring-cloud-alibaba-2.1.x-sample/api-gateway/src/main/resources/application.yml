@@ -26,6 +26,13 @@ spring:
           filters: # 过滤器，请求在传递过程中可以通过过滤器对其进行一定的修改
             - StripPrefix=1 # 此过滤器配置的作用是，在请求转发之前去掉第1层路径，即以上请求转化路径会变成 http://127.0.0.1:8081/product/1
             - Log=true,false # 自定义局部过滤器，具体示例实现是否开启日志记录
+        - id: service-order # 路由id
+          uri: lb://service-order
+          order: 1 # 路由的优先级,数字越小级别越高
+          predicates: # 断言(就是路由转发要满足的条件)
+            - Path=/api-order/**
+          filters: # 过滤器，请求在传递过程中可以通过过滤器对其进行一定的修改
+            - StripPrefix=1
     nacos:
       discovery:
         server-addr: 127.0.0.1:8848 # 配置 Nacos server 的地址，将网关服务注册到 nacos 中
