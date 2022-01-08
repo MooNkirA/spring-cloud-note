@@ -12,7 +12,7 @@ spring:
       # 配置路由数组（包含的元素：路由id、路由到微服务的uri，断言【判断条件】）
       routes:
         # 路由配置都是多个，所以此处是一个数组
-        - id: service-product # 路由id
+        - id: service-product # 路由id 商品服务
           # 方式二：根据微服务名称从注册中心拉取服务的地址与端口，格式： lb://服务名称（服务在注册中心上注册的名称）。
           # lb 是 Load Balance 的缩写，gateway 遵循实现了负载均衡策略
           uri: lb://service-product
@@ -26,11 +26,18 @@ spring:
           filters: # 过滤器，请求在传递过程中可以通过过滤器对其进行一定的修改
             - StripPrefix=1 # 此过滤器配置的作用是，在请求转发之前去掉第1层路径，即以上请求转化路径会变成 http://127.0.0.1:8081/product/1
             - Log=true,false # 自定义局部过滤器，具体示例实现是否开启日志记录
-        - id: service-order # 路由id
+        - id: service-order # 路由id 订单服务
           uri: lb://service-order
           order: 1 # 路由的优先级,数字越小级别越高
           predicates: # 断言(就是路由转发要满足的条件)
             - Path=/api-order/**
+          filters: # 过滤器，请求在传递过程中可以通过过滤器对其进行一定的修改
+            - StripPrefix=1
+        - id: service-user # 路由id 用户服务
+          uri: lb://service-user
+          order: 1 # 路由的优先级,数字越小级别越高
+          predicates: # 断言(就是路由转发要满足的条件)
+            - Path=/api-user/**
           filters: # 过滤器，请求在传递过程中可以通过过滤器对其进行一定的修改
             - StripPrefix=1
     nacos:
