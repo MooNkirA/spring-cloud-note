@@ -3,6 +3,7 @@ package com.moon.order.service.impl;
 import com.moon.domain.Order;
 import com.moon.order.dao.OrderDao;
 import com.moon.order.service.OrderService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
  * @description
  */
 @Service
+@Slf4j
 public class OrderServiceImpl implements OrderService {
 
     @Autowired

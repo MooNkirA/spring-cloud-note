@@ -1,7 +1,6 @@
-package com.moon.order.service;
+package com.moon.seata.service;
 
-import com.moon.domain.Product;
-import com.moon.order.service.impl.ProductFeignClientFallBackFactory;
+import com.moon.seata.domain.Product;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,9 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  *  value/name属性：指定需要调用的服务提供者注册的名称
  *  fallback属性：指定当调用出现问题之后，要执行哪个容错类中的同名方法的备用逻辑
  */
-// @FeignClient(value = "service-product", fallback = ProductFeignClientFallBack.class)
-@FeignClient(value = "service-product", fallbackFactory = ProductFeignClientFallBackFactory.class)
-// 注意：fallback 和 fallbackFactory 只能使用其中一种方式
+@FeignClient(value = "product-service")
 public interface ProductFeignClient {
 
     /*
@@ -35,5 +32,8 @@ public interface ProductFeignClient {
      */
     @GetMapping("/product/{pid}")
     Product findById(@PathVariable("pid") Long id);
+
+    @GetMapping("product/reduceInventory")
+    void reduceInventory(@RequestParam("pid") Long pid, @RequestParam("number") Integer number);
 
 }

@@ -14,7 +14,7 @@ spring:
         encode: UTF-8 # 配置内容的编码方式。默认值：UTF-8
         timeout: 3000 # 获取配置的超时时间，单位：ms。默认值：3000
         namespace: public # 配置的命名空间。常用场景之一是不同环境的配置的区分隔离，例如开发测试环境和生产环境的资源隔离等。
-        refresh-enabled: true # 是否开启监听和自动刷新。默认值：true
+        refresh-enabled: false # 是否开启监听和自动刷新。默认值：true
         # 引入公共配置，已经过时
         shared-dataids: all-service.yaml # 配置要引入的配置
         refreshable-dataids: all-service.yaml # 配置要实现动态配置刷新的配置

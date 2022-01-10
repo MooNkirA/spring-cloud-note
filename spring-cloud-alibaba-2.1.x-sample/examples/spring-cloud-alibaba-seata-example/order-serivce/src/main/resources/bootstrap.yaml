@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: order-service
+  cloud:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848 # nacos 的服务端地址
+        group: SEATA_GROUP # 默认值：DEFAULT_GROUP
+        namespace: public # 配置的命名空间。常用场景之一是不同环境的配置的区分隔离，例如开发测试环境和生产环境的资源隔离等。
+    alibaba:
+      seata:
+        tx-service-group: ${spring.application.name} # 配置seata
