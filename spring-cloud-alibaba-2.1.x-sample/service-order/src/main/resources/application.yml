@@ -1,0 +1,57 @@
+server:
+  port: 8091
+spring:
+  application:
+    name: service-order
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql:///springcloud_alibaba_sample_db?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=true
+    username: root
+    password: 123456
+  jpa:
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: update
+        # 指定数据库方言
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848 # 配置 Nacos server 的地址
+    # Sentinel 相关配置
+    sentinel:
+      transport:
+        port: 9999 # 跟控制台交流的端口，随意指定一个未使用的端口即可
+        dashboard: localhost:8080 # 配置sentinel控制台的请求地址
+      eager: true # 取消Sentinel控制台懒加载，当服务启动时立即加载到控制台中
+      # 配置关闭 sentinel 的 CommonFilter 实例化。用于测试实现链路限流  Spring Cloud Alibaba 2.1.1 版本是此配置
+      # filter:
+      #  enabled: false
+      # 关闭context整合 Spring Cloud Alibaba 2.1.2 及以上版本是此配置
+      web-context-unify: false
+  # 配置 zipkin
+  zipkin:
+    base-url: http://127.0.0.1:9411/ # 设置 zipkin server的请求地址
+    discoveryClientEnabled: false # 让nacos把它当成一个URL，而不要当做服务名
+    sender:
+      type: web # 设置数据的传输方式 , 以 http 的形式向 server 端发送数据
+  sleuth:
+    sampler:
+      probability: 1 # 配置采样的百分比，默认是 0.1（即10%）
+
+# 配置 Ribbon 的负载均衡策略
+service-product: # 调用的提供者的名称
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule # 随机调用策略
+
+# 开启 feign 对 sentinel 的支持
+feign:
+  sentinel:
+    enabled: true
+
+# RocketMQ 配置
+rocketmq:
+  name-server: 127.0.0.1:9876 # RocketMQ 服务的地址
+  producer:
+    group: producer-order # 生产者组名称

@@ -14,6 +14,7 @@
 
 ```
 spring-cloud-note
- └── spring-cloud-greenwich-sample  # Spring Cloud Greenwich版本的示例项目
+ ├── spring-cloud-greenwich-sample  # Spring Cloud Greenwich版本的示例项目
+ └── spring-cloud-alibaba-2.1.x-sample # Spring Cloud Alibaba 2.1.x 版本的使用示例
 ```
 
