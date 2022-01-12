@@ -1,0 +1,5 @@
+# RocketMQ 配置
+rocketmq:
+  name-server: 127.0.0.1:9876 # RocketMQ 服务的地址
+  producer:
+    group: producer-example # 生产者组名称
