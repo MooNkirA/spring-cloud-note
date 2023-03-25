@@ -5,20 +5,14 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.moon</groupId>
-    <artifactId>spring-cloud-alibaba-2.1.x-sample</artifactId>
+    <artifactId>feign-nacos-example</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>${project.artifactId}</name>
     <packaging>pom</packaging>
-    <description>
-        spring cloud alibaba 2.1.x 版本示例聚合项目
-    </description>
+    <description>基于 Nacos 的 Feign 服务调用示例</description>
 
     <modules>
-        <module>modules-common</module>
-        <module>service-user</module>
-        <module>service-product</module>
-        <module>service-order</module>
-        <module>api-gateway</module>
+        <module>feign-nacos-provider</module>
+        <module>feign-nacos-consumer</module>
     </modules>
 
     <!-- 依赖版本的锁定 -->
@@ -35,17 +29,14 @@
         </dependencies>
     </dependencyManagement>
 
-    <dependencies>
-        <!-- sleuth链路追踪依赖 -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-sleuth</artifactId>
-        </dependency>
-        <!-- zipkin 依赖 -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-zipkin</artifactId>
-        </dependency>
-    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
