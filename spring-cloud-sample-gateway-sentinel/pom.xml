@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>spring-cloud-sample-gateway-sentinel</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <name>${project.artifactId}</name>
+    <packaging>pom</packaging>
+    <description>Spring Cloud Gateway 服务网关与 Sentinel 限制基础示例项目</description>
+
+    <parent>
+        <artifactId>spring-cloud-note</artifactId>
+        <groupId>com.moon</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <!-- 子模块 -->
+    <modules>
+        <module>sample-gateway-sentinel-service-product</module>
+        <module>sample-gateway-sentinel-service-order</module>
+        <module>sample-gateway-sentinel-server-eureka</module>
+        <module>sample-gateway-sentinel-server-gateway</module>
+    </modules>
+
+</project>

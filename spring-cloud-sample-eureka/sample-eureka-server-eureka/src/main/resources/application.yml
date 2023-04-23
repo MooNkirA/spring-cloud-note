@@ -1,0 +1,27 @@
+server:
+  port: 8001 # 项目端口
+spring:
+  application:
+    name: shop-server-eureka # 服务名称
+  # 开启基于HTTP basic的认证
+  security:
+    basic:
+      enabled: true
+    # 配置用户的账号信息
+    user:
+      name: moon
+      password: moon
+# eureka配置部分
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    # 是否将自己注册到Eureka服务中，如果不是高可用部署，则不需要注册（注：也可以写成驼峰命名registerWithEureka）
+    register-with-eureka: false
+    # 服务发现，是否从Eureka中获取注册信息
+    fetch-registry: false
+    service-url:
+      # Eureka客户端与Eureka服务端的交互地址，高可用状态配置对方的地址，单机状态配置自己（如果不配置则默认本机8761端口）
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+  server:
+    enable-self-preservation: false # 禁用自我保护模式

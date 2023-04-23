@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>spring-cloud-sample-stream</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <name>${project.artifactId}</name>
+    <packaging>pom</packaging>
+    <description>Spring Cloud Stream 消息发送组件基础示例项目</description>
+
+    <modules>
+        <module>sample-stream-producer</module>
+        <module>sample-stream-consumer</module>
+        <module>sample-stream-consumer2</module>
+        <module>sample-stream-common</module>
+    </modules>
+    
+    <parent>
+        <artifactId>spring-cloud-note</artifactId>
+        <groupId>com.moon</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <!-- 版本控制 -->
+    <dependencyManagement>
+        <dependencies>
+
+            <!-- 项目的公共模块 -->
+            <dependency>
+                <groupId>com.moon</groupId>
+                <artifactId>sample-stream-common</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+</project>

@@ -1,0 +1,24 @@
+server:
+  port: 39001 # 项目端口
+spring:
+  application:
+    name: service-product # 服务名称
+  datasource: # 数据库配置
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/springcloud_sample_db?useUnicode=true&characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: root
+    password: 123456
+  jpa: # jpa配置
+    database: MySQL
+    show-sql: true
+    open-in-view: true
+# apollo 配置中心相关配置
+app:
+  id: service-product  # 指定读取apollo配置中心的应用配置的appid
+# 定义apollo相关必须配置
+apollo:
+  bootstrap:
+    enabled: true # 配置开启apollo
+  meta: http://127.0.0.1:8080 # apollo 服务端地址
+    # namespaces: application,micro_service.spring-boot-http,spring-rocketmq,micro_service.spring-boot-druid  # 定义读取配置的Namespace，中间以逗号分隔
+name: MooN
