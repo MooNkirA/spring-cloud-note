@@ -32,6 +32,12 @@ public class ProducerTest {
         messageSender.send("Hello, Spring Cloud Stream Producer!");
     }
 
+    /* 测试基于 RocketMQ 发送消息 */
+    @Test
+    public void testSendRocketMQMessage() {
+        messageSender.sendRocketMQMessage("Spring Cloud Stream Producer use RocketMQ!");
+    }
+
     /* 测试自定义消息通道发送消息 */
     @Test
     public void sendMessageByCustomChannel() {

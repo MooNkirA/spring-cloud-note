@@ -26,7 +26,6 @@
     <!-- 版本控制 -->
     <dependencyManagement>
         <dependencies>
-
             <!-- 项目的公共模块 -->
             <dependency>
                 <groupId>com.moon</groupId>

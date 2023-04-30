@@ -31,6 +31,10 @@ public class MessageSender {
     @Qualifier("output")
     private MessageChannel messageChannel;
 
+    // 注入绑定的输出通道对象，通过 source.output() 同样得到 MessageChannel 对象
+    @Autowired
+    private Source source;
+
     /**
      * 发送消息
      *
@@ -41,4 +45,12 @@ public class MessageSender {
         messageChannel.send(MessageBuilder.withPayload(obj).build());
     }
 
+    /**
+     * 用于测试发送 RocketMQ 消息
+     *
+     * @param obj
+     */
+    public void sendRocketMQMessage(Object obj) {
+        source.output().send(MessageBuilder.withPayload(obj).build());
+    }
 }

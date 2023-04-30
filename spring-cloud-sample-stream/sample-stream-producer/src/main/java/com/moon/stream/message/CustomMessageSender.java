@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
  * @date 2020-11-26 17:01
  * @description
  */
-@Component
+// @Component
 @EnableBinding(CustomProcessor.class) // 绑定自定义消息通道接口
 public class CustomMessageSender {
 
