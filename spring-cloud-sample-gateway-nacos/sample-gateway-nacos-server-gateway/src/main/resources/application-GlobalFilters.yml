@@ -1,0 +1,9 @@
+# 全局过滤器配置测试
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: route-lb
+          uri: lb://service-provider # 全局过滤器 LoadBalancerClientFilter
+          predicates:
+            - Path=/**

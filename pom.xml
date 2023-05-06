@@ -32,6 +32,7 @@
         <module>spring-cloud-sample-hystrix-feign</module>
         <module>spring-cloud-sample-zuul</module>
         <module>spring-cloud-sample-gateway</module>
+        <module>spring-cloud-sample-gateway-nacos</module>
         <module>spring-cloud-sample-gateway-sentinel</module>
         <module>spring-cloud-sample-sleuth</module>
         <module>spring-cloud-sample-stream</module>

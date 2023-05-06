@@ -15,8 +15,13 @@ spring:
         timeout: 3000 # 获取配置的超时时间，单位：ms。默认值：3000
         namespace: public # 配置的命名空间。常用场景之一是不同环境的配置的区分隔离，例如开发测试环境和生产环境的资源隔离等。
         refresh-enabled: false # 是否开启监听和自动刷新。默认值：true
-        # 引入公共配置，已经过时
-        shared-dataids: all-service.yaml # 配置要引入的配置
-        refreshable-dataids: all-service.yaml # 配置要实现动态配置刷新的配置
+        # 方式1：通过 shared-dataids 属性引入公共配置，已过时？！
+        # shared-dataids: all-service.yaml # 配置要引入的配置
+        # refreshable-dataids: all-service.yaml # 配置要实现动态配置刷新的配置
+        # 方式2：通过 ext-config 属性引入公共配置，也已过时？！
+        ext-config:
+          - data-id: all-service.yaml
+            group: DEFAULT_GROUP
+            refresh: true
   profiles:
     active: dev # 环境标识

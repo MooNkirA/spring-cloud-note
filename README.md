@@ -20,7 +20,8 @@
 | spring-cloud-sample-hystrix-resttemplate  | 微服务 RestTemplate 引入 Spring Cloud Hystrix 基础示例项目   |
 | spring-cloud-sample-hystrix-feign         | Spring Cloud Feign 整合 Hystrix 基础示例项目                 |
 | spring-cloud-sample-zuul                  | Spring Cloud Zuul 服务网关基础示例项目                       |
-| spring-cloud-sample-gateway               | Spring Cloud Gateway 服务网关基础示例项目                    |
+| spring-cloud-sample-gateway               | 基于 Eureka 注册中心的 Spring Cloud Gateway 服务网关基础示例项目 |
+| spring-cloud-sample-gateway-nacos         | 基于 Nacos 注册中心的  Spring Cloud Gateway 服务网关基础示例项目 |
 | spring-cloud-sample-gateway-sentinel      | Spring Cloud Gateway 服务网关与 Sentinel 限制基础示例项目    |
 | spring-cloud-sample-sleuth                | Spring Cloud Sleuth 链路追踪基础示例项目                     |
 | spring-cloud-sample-stream                | Spring Cloud Stream 消息发送组件基础示例项目                 |

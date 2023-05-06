@@ -1,0 +1,7 @@
+# 自动根据服务名称进行路由转发示例配置
+spring:
+  cloud:
+    gateway:
+      discovery: # 配置自动根据注册中心的微服务名称进行路由转发
+        locator:
+          enabled: true # 开启根据服务名称自动转发，默认值是false
