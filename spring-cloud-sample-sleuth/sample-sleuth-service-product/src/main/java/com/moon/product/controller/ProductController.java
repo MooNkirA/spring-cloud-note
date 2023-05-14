@@ -1,5 +1,6 @@
 package com.moon.product.controller;
 
+import brave.propagation.ExtraFieldPropagation;
 import com.moon.entity.Product;
 import com.moon.product.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,6 +67,17 @@ public class ProductController {
     public String delete(@PathVariable Long id) {
         productService.delete(id);
         return "删除成功";
+    }
+
+    /**
+     * 用于测试 Sleuth TraceFilter 的接口
+     *
+     * @return
+     */
+    @GetMapping("/testTraceFilter")
+    public String testTraceFilter() {
+        // 在 Sleuth 中取出包裹
+        return "hi " + ExtraFieldPropagation.get("BaggageId");
     }
 
 }

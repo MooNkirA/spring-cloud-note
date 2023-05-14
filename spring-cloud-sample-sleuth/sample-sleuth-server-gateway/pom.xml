@@ -31,22 +31,12 @@
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
 
-        <!-- sleuth链路追踪依赖 -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-sleuth</artifactId>
-        </dependency>
-
-        <!-- zipkin 依赖 -->
+        <!-- zipkin 整合 sleuth 依赖
+            spring-cloud-starter-zipkin 依赖已包含 spring-cloud-starter-sleuth 与 spring-cloud-sleuth-zipkin
+        -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-zipkin</artifactId>
-        </dependency>
-
-        <!-- zipkin整合sleuth依赖 -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-sleuth-zipkin</artifactId>
         </dependency>
         <!-- RabbitMQ 依赖 -->
         <dependency>

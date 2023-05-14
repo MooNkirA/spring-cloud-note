@@ -15,10 +15,13 @@ spring:
   # 配置 zipkin
   zipkin:
     sender:
-      type: rabbit # 设置数据的传输方式 , 以向 RabbitMQ 发送消息的方式采集数据
+      # 设置数据的传输方式 , rabbit - 以向 RabbitMQ 发送消息的方式采集数据；web - 以 http 的形式向 server 端发送数据
+      type: web
   sleuth:
     sampler:
       probability: 1 # 配置采样的百分比，默认是 0.1（即10%）
+    baggage-keys: # 配置 Sleuth TraceFilter 传递的包裹ID
+      - BaggageId
   # 配置 RabbitMQ
   rabbitmq:
     host: 192.168.12.132

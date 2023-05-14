@@ -46,6 +46,7 @@
 
         <!-- Spring Cloud涉及的相关基础技术基础示例聚合模块 -->
         <module>reference-technology-demo</module>
+        <module>spring-cloud-sample-sleuth-calling-support</module>
     </modules>
 
     <properties>

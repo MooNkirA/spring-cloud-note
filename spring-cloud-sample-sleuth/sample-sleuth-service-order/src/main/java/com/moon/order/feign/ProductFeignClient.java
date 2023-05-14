@@ -29,4 +29,6 @@ public interface ProductFeignClient {
     @GetMapping("/product/{id}")
     Product findById(@PathVariable("id") Long id);
 
+    @GetMapping("/product/testTraceFilter")
+    String testTraceFilter();
 }
