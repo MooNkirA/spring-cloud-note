@@ -1,0 +1,27 @@
+server:
+  port: 9002 # 项目端口
+spring:
+  application:
+    name: shop-service-order # 服务名称
+  datasource: # 数据库配置
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/springcloud_sample_db?useUnicode=true&characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: root
+    password: 123456
+  jpa: # jpa配置
+    database: MySQL
+    show-sql: true
+    open-in-view: true
+# Eureka 客户端配置
+eureka:
+  instance:
+    prefer-ip-address: true # 将当前服务的ip地址注册到Eureka服务中
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}  # 指定实例id，通过 spring.cloud.client.ip-address 可以获取ip地址
+    lease-renewal-interval-in-seconds: 5 # 发送心跳续约间隔时间
+    lease-expiration-duration-in-seconds: 10 # eureka client发送心跳给server端后，续约到期时间（默认90秒）
+  client:
+    register-with-eureka: true  # 服务注册开关
+    fetch-registry: true  # 服务发现开关
+    # Eureka server 地址，多个eureka server之间用,隔开
+    service-url:
+      defaultZone: http://eureka01:8001/eureka/,http://eureka02:8002/eureka/

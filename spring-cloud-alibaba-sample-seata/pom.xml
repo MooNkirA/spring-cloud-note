@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <parent>
+        <artifactId>spring-cloud-note</artifactId>
+        <groupId>com.moon</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>spring-cloud-alibaba-sample-seata</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <name>${project.artifactId}</name>
+    <packaging>pom</packaging>
+    <description>
+        spring cloud alibaba seata 分布式事务解决方案
+    </description>
+
+    <modules>
+        <module>sample-seata-serivce-product</module>
+        <module>sample-seata-serivce-order</module>
+        <module>sample-seata-serivce-common</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- common 模块 -->
+            <dependency>
+                <groupId>com.moon</groupId>
+                <artifactId>sample-seata-serivce-common</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+</project>

@@ -1,0 +1,47 @@
+# 内置局部过滤器配置测试
+spring:
+  cloud:
+    gateway:
+      routes:
+        # 测试 AddRequestHeader
+#        - id: route-addheader
+#          uri: http://localhost:8080/test/head
+#          predicates:
+#            - Method=GET
+#          filters:
+#            - AddRequestHeader=X-Request-red, blue # # 内置局部过滤器
+        # 测试 AddRequestParameter
+#        - id: add_request_parameter_route
+#          uri: http://localhost:8001/test/param
+#          predicates:
+#            - Method=GET
+#          filters:
+#            - AddRequestParameter=red, blue
+        # 测试 AddResponseHeader
+#        - id: add_response_header_route
+#          uri: http://localhost:8001/hello
+#          predicates:
+#            - Method=GET
+#          filters:
+#            - AddResponseHeader=X-Response-Red, Blue
+        # 测试 RemoveRequestHeader
+#        - id: removerequestheader_route
+#          uri: http://localhost:8001/hello
+#          predicates:
+#            - Method=GET
+#          filters:
+#            - RemoveRequestHeader=X-Request-red
+        # 测试 StripPrefix
+#        - id: strip_prefix_route
+#          uri: http://localhost:8001/hello
+#          predicates:
+#            - Path=/red/**
+#          filters:
+#            - StripPrefix=2 # 访问 http://localhost:8081/red/blue/hello ，路径中的 /red/blue 会被截取掉，相当于访问 /hello
+        # 测试 RewritePath
+        - id: rewritepath_route
+          uri: http://localhost:8001/hello
+          predicates:
+            - Path=/red/**
+          filters:
+            - RewritePath=/red(?<segment>/?.*), $\{segment} # 访问 http://localhost:8081/red/hello，路径 /red/hello 会被替换为 /hello，相当于访问 /hello

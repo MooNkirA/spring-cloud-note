@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>spring-cloud-sample-concurrency-isolation</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <name>${project.artifactId}</name>
+    <packaging>pom</packaging>
+    <description>基于线程池的形式完成服务的隔离，防止服务雪崩效应</description>
+
+    <parent>
+        <artifactId>spring-cloud-note</artifactId>
+        <groupId>com.moon</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <!-- 子模块 -->
+    <modules>
+        <module>sample-concurrency-isolation-service-product</module>
+        <module>sample-concurrency-isolation-service-order</module>
+    </modules>
+
+</project>

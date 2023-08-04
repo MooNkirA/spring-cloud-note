@@ -1,0 +1,10 @@
+spring:
+  cloud:
+    stream:
+      rocketmq: # RocketMQ 支持
+        binder:
+          name-server: 127.0.0.1:9876
+      bindings:
+        output: # Spring Cloud Stream 内置的发送消息的通道（名称为output）
+          destination: topic-test-stream  #  RocketMQ 中会发送到一个主题上
+          group: stream-consumer-group

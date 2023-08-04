@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>spring-cloud-note</artifactId>
+        <groupId>com.moon</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>spring-cloud-alibaba-sample</artifactId>
+    <name>${project.artifactId}</name>
+    <packaging>pom</packaging>
+    <description>Spring Cloud Alibaba 全组件综合示例</description>
+
+    <modules>
+        <module>alibaba-sample-common</module>
+        <module>alibaba-sample-api-gateway</module>
+        <module>alibaba-sample-service-order</module>
+        <module>alibaba-sample-service-product</module>
+        <module>alibaba-sample-service-user</module>
+    </modules>
+
+    <!-- 示例项目公共依赖 -->
+    <dependencies>
+        <!-- sleuth链路追踪依赖 -->
+        <!--<dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-sleuth</artifactId>
+        </dependency>-->
+        <!-- zipkin 整合 sleuth 依赖
+            spring-cloud-starter-zipkin 依赖已包含 spring-cloud-starter-sleuth
+        -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-zipkin</artifactId>
+        </dependency>
+    </dependencies>
+
+</project>

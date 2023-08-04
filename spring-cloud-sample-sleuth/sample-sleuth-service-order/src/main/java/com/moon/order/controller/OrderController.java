@@ -1,0 +1,54 @@
+package com.moon.order.controller;
+
+import com.moon.entity.Product;
+import com.moon.order.feign.ProductFeignClient;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+/**
+ * 订单控制类
+ *
+ * @author MooNkirA
+ * @version 1.0
+ * @date 2020-10-8 09:46
+ * @description
+ */
+@RestController
+@RequestMapping("order")
+@Slf4j
+public class OrderController {
+
+    // 注入FeignClient服务调用接口
+    @Autowired
+    private ProductFeignClient productFeignClient;
+
+    /**
+     * 根据商品id创建订单
+     *
+     * @param id 商品的id
+     * @return
+     */
+    @PostMapping("/{id}")
+    public String createOrder(@PathVariable Long id) {
+        // 使用Feign组件实现服务远程调用，直接调用FeignClient的接口定义的相应方法即可
+        Product product = productFeignClient.findById(id);
+        log.info("当前下单的商品是: ${}", product);
+        return "创建订单成功";
+    }
+
+    /**
+     * 测试 Sleuth TraceFilter
+     *
+     * @return
+     */
+    @GetMapping("/testTraceFilter")
+    public String testTraceFilter() {
+        return productFeignClient.testTraceFilter();
+    }
+
+}

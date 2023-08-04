@@ -1,0 +1,25 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: service-gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+  profiles:
+    # 需要测试不同的场景时，替换激活相应的配置文件
+    # LocalFilters 局部过滤器示例配置
+    # GlobalFilters 全局过滤器示例配置
+    # auto 配置根据服务名称自动转发
+    active: LocalFilters
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  security:
+    enabled: false
+logging:
+  level:
+    root: debug

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.1.13.RELEASE</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.moon</groupId>
+    <artifactId>spring-cloud-note</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <description>
+        Spring Cloud 与 Spring Cloud Alibaba 全技术栈示例项目
+    </description>
+
+    <modules>
+        <module>spring-cloud-sample-common</module>
+        <module>microservice-no-springcloud</module>
+        <module>spring-cloud-sample-eureka</module>
+        <module>spring-cloud-sample-eureka-cluster</module>
+        <module>spring-cloud-sample-ribbon</module>
+        <module>spring-cloud-sample-consul</module>
+        <module>spring-cloud-sample-feign</module>
+        <module>spring-cloud-sample-feign-nacos</module>
+        <module>spring-cloud-sample-concurrency-isolation</module>
+        <module>spring-cloud-sample-hystrix-resttemplate</module>
+        <module>spring-cloud-sample-hystrix-feign</module>
+        <module>spring-cloud-sample-zuul</module>
+        <module>spring-cloud-sample-gateway</module>
+        <module>spring-cloud-sample-gateway-nacos</module>
+        <module>spring-cloud-sample-gateway-sentinel</module>
+        <module>spring-cloud-sample-sleuth</module>
+        <module>spring-cloud-sample-stream</module>
+        <module>spring-cloud-sample-config</module>
+        <module>spring-cloud-sample-apollo</module>
+        <!-- Spring Cloud Alibaba  -->
+        <module>spring-cloud-alibaba-sample</module>
+        <module>spring-cloud-alibaba-sample-sentinel</module>
+        <module>spring-cloud-alibaba-sample-sms</module>
+        <module>spring-cloud-alibaba-sample-seata</module>
+
+        <!-- Spring Cloud涉及的相关基础技术基础示例聚合模块 -->
+        <module>reference-technology-demo</module>
+        <module>spring-cloud-sample-sleuth-calling-support</module>
+    </modules>
+
+    <properties>
+        <!-- 项目通用依赖版本 -->
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+        <java.version>1.8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <!-- Spring Boot 版本 -->
+        <!--<spring-boot.version>2.1.13.RELEASE</spring-boot.version>-->
+        <!-- Spring Cloud 版本 -->
+        <spring-cloud.version>Greenwich.SR6</spring-cloud.version>
+        <!-- Spring Cloud Alibaba 版本 -->
+        <spring-cloud-alibaba.version>2.1.4.RELEASE</spring-cloud-alibaba.version>
+        <!-- Alibaba Cloud SMS 短信版本 -->
+        <alibaba-sms.version>2.1.1.RELEASE</alibaba-sms.version>
+
+        <apollo-client.version>1.1.0</apollo-client.version>
+        <rocketmq.version>2.1.1</rocketmq.version>
+        <fastjson.version>1.2.76</fastjson.version>
+        <mysql-connector.version>8.0.30</mysql-connector.version>
+        <!--<mysql-connector.version>5.1.48</mysql-connector.version>-->
+    </properties>
+
+    <!-- 定义全局jar版本，模块使用需要再次引入但不用写版本号-->
+    <dependencyManagement>
+        <dependencies>
+            <!-- spring boot 依赖 -->
+            <!--<dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>-->
+            <!-- spring cloud 依赖 -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- spring cloud alibaba 依赖 -->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring-cloud-alibaba.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- Alibaba Cloud SMS 短信发送依赖 -->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alicloud-sms</artifactId>
+                <version>${alibaba-sms.version}</version>
+            </dependency>
+
+            <!-- apollo 客户端依赖 -->
+            <dependency>
+                <groupId>com.ctrip.framework.apollo</groupId>
+                <artifactId>apollo-client</artifactId>
+                <version>${apollo-client.version}</version>
+            </dependency>
+
+            <!-- RocketMQ 依赖 -->
+            <dependency>
+                <groupId>org.apache.rocketmq</groupId>
+                <artifactId>rocketmq-spring-boot-starter</artifactId>
+                <!--
+                    采用客户端调用的时候，可能会相对高频的出现的 No route info of this topic这个异常问题
+                    配置 autoCreateTopicEnable=true，如果这个属性没有配置，且没有手动创建topic，就会出现上面的异常
+                    注：这个属性在高版本已经默认配置了。测试过以前 2.0.2 版本不行
+                -->
+                <version>${rocketmq.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql-connector.version}</version>
+            </dependency>
+
+            <!-- 示例项目公共模块 -->
+            <dependency>
+                <groupId>com.moon</groupId>
+                <artifactId>spring-cloud-sample-common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <!-- 公共依赖 -->
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-logging</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <!-- 项目构建部分 -->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

@@ -1,0 +1,7 @@
+server:
+  port: 7002 # 服务端口
+spring:
+  application:
+    name: stream-consumer # 指定服务名
+  profiles: # 根据使用的消息中件单，切换不同的配置文件 rabbitmq / rocketmq
+    active: rocketmq
